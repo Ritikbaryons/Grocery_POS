@@ -1,0 +1,33 @@
+<div class="page_container">
+  <div class="d-flex align-items-start setting_info_container">
+    <div class="settings_nav_section">
+      <ul class="p-0 m-0">
+        
+        <li class="position-relative" *ngIf="commonService.checkRolePermissions('LIST_TAX')">
+          <a href="" class="font_14 fw-reg text-black"  [routerLinkActive]="['active']"
+            routerLink="/POS_Grocery/masters-tax">Tax</a>
+        </li>
+       
+        <li class="position-relative" *ngIf="commonService.checkRolePermissions('LIST_ROLES_AND_PERMISSIONS')">
+          <a href="" class="font_14 fw-reg text-black"
+            *ngIf="userData.roleName == 'Company Admin' || userData.roleName == 'Super Admin'"
+            [routerLinkActive]="['active']" routerLink="/POS_Grocery/role">Roles & Permissions</a>
+        </li>
+        <li class="position-relative" *ngIf="commonService.checkRolePermissions('LIST_USER_REGISTRATION')">
+          <a href="" class="font_14 fw-reg text-black"  [routerLinkActive]="['active']"
+            routerLink="/POS_Grocery/master-user-registration">User Registration</a>
+        </li>
+        <li class="position-relative" *ngIf="commonService.checkRolePermissions('LIST_GENERAL_SETTINGS')">
+          <a href="" class="font_14 fw-reg text-black" [routerLinkActive]="['active']"
+            routerLink="/POS_Grocery/general-settings">General Settings</a>
+        </li>
+        
+        <!-- <li class="position-relative" *ngIf="commonService.checkRolePermissions('LIST_SHIFT_TIMINGS')">
+          <a href="" class="font_14 fw-reg text-black" [routerLinkActive]="['active']"
+            routerLink="/POS_Grocery/shifttiming"> Shift Timings</a>
+        </li> -->
+        
+      </ul>
+    </div>
+  </div>
+</div>
