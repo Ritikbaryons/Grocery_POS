@@ -5,6 +5,7 @@ import { AlertService } from '@core/services/common/alert.service';
 import { PosDataService } from '@core/services/pos-system/pos-data.service';
 import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
+import { PrintVeiwComponent } from '../print-design-veiw/print-veiw/print-veiw.component';
 
 @Component({
   selector: 'app-make-payment',
@@ -103,7 +104,7 @@ export class MakePaymentComponent implements OnInit {
     this.posDataService.GetPaymentModesByOutlet(this.outletId, false).subscribe((res: any) => {
       this.ngxLoader.stopLoader('loader-01');
       this.allPaymentModes = res['data']
-      this.GetLoyaltySetting();
+      
     });
   }
 
@@ -595,6 +596,7 @@ export class MakePaymentComponent implements OnInit {
   }
 
   async onBill() {
+    debugger
     /*This block is for Walk-in and Online order types.
     Order will be placed / updated only after successsful payment*/
     if (this.hideItemLevelPayment) {
@@ -824,29 +826,29 @@ export class MakePaymentComponent implements OnInit {
       amount: parseFloat(this.remainingAmount.toFixed(2))
     });
   }
-  // openPrintView() {
-  //   let totalPointAmount = this.breakageData.reduce((sum, current) => sum + current.pointAmount, 0);
+  openPrintView() {
+    let totalPointAmount = this.breakageData.reduce((sum, current) => sum + current.pointAmount, 0);
 
-  //   if (Number(this.totalReceived.toFixed(2)) <= Number(this.PrimaryOrder.total.toFixed(2))) {
-  //     this.OpenPrintViewAndCheckConditions(totalPointAmount);
-  //   } else {
-  //     this.ShowPrintMessage = true;
-  //     this.alertService.showError('Added Amount is Not Equal to Total Amount');
-  //   }
-  // }
+    if (Number(this.totalReceived.toFixed(2)) <= Number(this.PrimaryOrder.total.toFixed(2))) {
+      this.OpenPrintViewAndCheckConditions(totalPointAmount);
+    } else {
+      this.ShowPrintMessage = true;
+      this.alertService.showError('Added Amount is Not Equal to Total Amount');
+    }
+  }
 
-  // private OpenPrintViewAndCheckConditions(totalPointAmount: any) {
-  //   if (this.isPointApplied)
-  //     this.PrimaryOrder.total = this.PrimaryOrder.total + totalPointAmount;
-  //   sessionStorage.removeItem('orderDiscount' + this.PrimaryOrder.orderId);
-  //   //this.activeModal.close();
-  //   this.ShowPrintMessage = false;
-  //   this.modalService.open(PrintVeiwComponent, { backdrop: 'static', size: 'md', keyboard: true, centered: true }).result.then((result) => {
-  //     this.CheckResultAndRedirectToPage(result);
-  //   }, (reason) => {
-  //     this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-  //   });
-  // }
+  private OpenPrintViewAndCheckConditions(totalPointAmount: any) {
+    if (this.isPointApplied)
+      this.PrimaryOrder.total = this.PrimaryOrder.total + totalPointAmount;
+    sessionStorage.removeItem('orderDiscount' + this.PrimaryOrder.orderId);
+    //this.activeModal.close();
+    this.ShowPrintMessage = false;
+    this.modalService.open(PrintVeiwComponent, { backdrop: 'static', size: 'md', keyboard: true, centered: true }).result.then((result) => {
+      this.CheckResultAndRedirectToPage(result);
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
       return 'by pressing ESC';
@@ -893,28 +895,28 @@ export class MakePaymentComponent implements OnInit {
       })
     }
   }
-  async GetLoyaltySetting() {
-    const Outletid = sessionStorage.getItem('activeOutletId');
-    if ((sessionStorage.getItem("page") == "dine" || sessionStorage.getItem("page") == "Running" || sessionStorage.getItem("page") == "running") && this.PrimaryOrder?.customerId != null) {
-      await this.GetCustomerById(this.PrimaryOrder.customerId);
-    }
-    else {
-      this.customerData = JSON.parse(sessionStorage.getItem('customerData'));
-    }
-    setTimeout(() => {
-      this.posDataService.GetLoyaltyByOutlet(Outletid).subscribe((res: any) => {
-        const status = res['success'];
-        const msg = res['message'];
-        if (status && res.data) {
-          this.GetLoyaltyData = res.data;
+  // async GetLoyaltySetting() {
+  //   const Outletid = sessionStorage.getItem('activeOutletId');
+  //   if ((sessionStorage.getItem("page") == "dine" || sessionStorage.getItem("page") == "Running" || sessionStorage.getItem("page") == "running") && this.PrimaryOrder?.customerId != null) {
+  //     await this.GetCustomerById(this.PrimaryOrder.customerId);
+  //   }
+  //   else {
+  //     this.customerData = JSON.parse(sessionStorage.getItem('customerData'));
+  //   }
+  //   setTimeout(() => {
+  //     this.posDataService.GetLoyaltyByOutlet(Outletid).subscribe((res: any) => {
+  //       const status = res['success'];
+  //       const msg = res['message'];
+  //       if (status && res.data) {
+  //         this.GetLoyaltyData = res.data;
 
-          this.AmountFromWallete = this.customerData?.totalPoints * this.GetLoyaltyData.amountPerPoint;
-          if (this.AmountFromWallete > 0 && this.PrimaryOrder?.total >= this.GetLoyaltyData?.minAmountToUseWallet)
-            this.allPaymentModes.push({ paymentModeName: "Wallet" });
-        } else {
-          this.alertService.showError(msg || 'Failed to load loyalty settings');
-        }
-      });
-    }, 200)
-  }
+  //         this.AmountFromWallete = this.customerData?.totalPoints * this.GetLoyaltyData.amountPerPoint;
+  //         if (this.AmountFromWallete > 0 && this.PrimaryOrder?.total >= this.GetLoyaltyData?.minAmountToUseWallet)
+  //           this.allPaymentModes.push({ paymentModeName: "Wallet" });
+  //       } else {
+  //         this.alertService.showError(msg || 'Failed to load loyalty settings');
+  //       }
+  //     });
+  //   }, 200)
+  // }
 }

@@ -119,9 +119,9 @@ export class OrderComponent implements OnInit {
     this.currentOutlet = JSON.parse(sessionStorage.getItem('activeOutlet')); // Here we require to get full data of outlet (Currently it is only ID)
     this.GetCategoriesList();
     this.getAllTaxs();
-    this.getAllDiscounts();
+    //this.getAllDiscounts();
     this.getAllModifiers();
-    this.getAllPromocodes();
+    //this.getAllPromocodes();
     if (this.currentTableDetails?.orderId) {
       this.GetOrderByOrderId(this.currentTableDetails.orderId);
     } else
@@ -199,33 +199,33 @@ export class OrderComponent implements OnInit {
       }
     });
   }
-  getAllDiscounts() {
-    let data = { outletId: this.currentOutlet.outletId, IsAllItem: false }
-    this.posDataService.getAllDiscountByOutletId(data).subscribe(res => {
-      if (res.success) {
-        this.allDiscountsMaster = res['data'];
-        this.allDiscounts = this.allDiscountsMaster;
-      } else {
-        this.alertService.showError(res.message);
-        return null;
-      }
-    });
-  }
-  getAllPromocodes() {
-    let jsonData: any = {};
-    jsonData.outletId = sessionStorage.getItem('activeOutletId');
-    jsonData.isAllItem = false;
-    this.posDataService.getAllPromocodeByOutletId(jsonData).subscribe((response) => {
-      this.allPromocodes = response['data'];
-      let success = response['success'];
-      let msg = response['message'];
-      if (success) {
-      }
-      else {
-        this.alertService.showError(msg);
-      }
-    })
-  }
+  // getAllDiscounts() {
+  //   let data = { outletId: this.currentOutlet.outletId, IsAllItem: false }
+  //   this.posDataService.getAllDiscountByOutletId(data).subscribe(res => {
+  //     if (res.success) {
+  //       this.allDiscountsMaster = res['data'];
+  //       this.allDiscounts = this.allDiscountsMaster;
+  //     } else {
+  //       this.alertService.showError(res.message);
+  //       return null;
+  //     }
+  //   });
+  // }
+  // getAllPromocodes() {
+  //   let jsonData: any = {};
+  //   jsonData.outletId = sessionStorage.getItem('activeOutletId');
+  //   jsonData.isAllItem = false;
+  //   this.posDataService.getAllPromocodeByOutletId(jsonData).subscribe((response) => {
+  //     this.allPromocodes = response['data'];
+  //     let success = response['success'];
+  //     let msg = response['message'];
+  //     if (success) {
+  //     }
+  //     else {
+  //       this.alertService.showError(msg);
+  //     }
+  //   })
+  // }
   getAllTaxs() {
     this.posDataService.getTaxByOutletId(this.currentOutlet.outletId, false).subscribe(res => {
       if (res.success) {

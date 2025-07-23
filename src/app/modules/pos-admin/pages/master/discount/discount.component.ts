@@ -47,43 +47,43 @@ export class DiscountComponent implements OnInit {
   ) { }
 
 
-  getAllDiscountData() {
-    this.isDataLoaded = false;
-    this.ngxLoader.startLoader('loader-01');
-    let obj = {
-      outletId: this.outletId,
-      isAllItem: true,
-    }
-    this.posDataService.getAllDiscountByOutletId(obj).subscribe((res: any) => {
-      this.ngxLoader.stopLoader('loader-01');
-      this.discountData = res['data'];
-      let success = res['success'];
-      let msg = res['message'];
-      if (success) {
-        this.isDataLoaded = true;
-        this.dtTrigger.next();
-      this.tableListRecord.total = this.discountData?.length;
-      this.isDataLoaded = true;
+  // getAllDiscountData() {
+  //   this.isDataLoaded = false;
+  //   this.ngxLoader.startLoader('loader-01');
+  //   let obj = {
+  //     outletId: this.outletId,
+  //     isAllItem: true,
+  //   }
+  //   this.posDataService.getAllDiscountByOutletId(obj).subscribe((res: any) => {
+  //     this.ngxLoader.stopLoader('loader-01');
+  //     this.discountData = res['data'];
+  //     let success = res['success'];
+  //     let msg = res['message'];
+  //     if (success) {
+  //       this.isDataLoaded = true;
+  //       this.dtTrigger.next();
+  //     this.tableListRecord.total = this.discountData?.length;
+  //     this.isDataLoaded = true;
 
-      }
-      else{
-        this.alertService.showError(msg);
-        this.isDataLoaded = true;
-      }
-    });
-  }
+  //     }
+  //     else{
+  //       this.alertService.showError(msg);
+  //       this.isDataLoaded = true;
+  //     }
+  //   });
+  // }
 
   ngOnInit(): void {
     this.outletName = sessionStorage.getItem('activeOutletname');
     this.outletId = sessionStorage.getItem('activeOutletId');
-    this.getAllDiscountData();
+    
   }
 
   openForm() {
     this.modalService.open(DiscountFormComponent, { backdrop: 'static', windowClass: 'main_add_popup', keyboard: true, centered: true }).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
       if (result) {
-        this.getAllDiscountData();
+        
       }
 
     }, (reason) => {
@@ -116,7 +116,7 @@ export class DiscountComponent implements OnInit {
     this.modalService.open(DiscountFormComponent, { backdrop: 'static', windowClass: 'main_add_popup', keyboard: true, centered: true }).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
       if (result) {
-        this.getAllDiscountData();
+        
       }
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
@@ -132,7 +132,7 @@ export class DiscountComponent implements OnInit {
       let msg = res['message'];
       if (success) {
         this.alertService.showSuccess('Deleted Successfully');
-        this.getAllDiscountData();
+
       }
       else {
         this.alertService.showError(msg);

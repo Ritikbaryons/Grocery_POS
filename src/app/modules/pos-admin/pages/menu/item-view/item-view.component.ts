@@ -56,9 +56,9 @@ export class ItemViewComponent implements OnInit {
       let msg = res['message'];
       if (success) {
         if (this.name == "Menu") {
-          this.ShowDiscount();
-          this.ShowPromocode();
-          this.ShowModifier();
+          // this.ShowDiscount();
+          // this.ShowPromocode();
+          // this.ShowModifier();
           if (this.itemData.taxId != null) {
             this.getTaxDataById();
           }
@@ -121,48 +121,48 @@ export class ItemViewComponent implements OnInit {
       }
     });
   }
-  ShowDiscount() {
-    this.ngxLoader.startLoader('loader-01');
-    let obj = {
-      outletId: sessionStorage.getItem('activeOutletId'),
-      isAllItem: false,
-    }
-    this.posDataService.getAllDiscountByOutletId(obj).subscribe((res: any) => {
-      this.ngxLoader.stopLoader('loader-01');
-      let Data = res['data'];
-      if (res['success']) {
-        for (let i = 0; i < this.itemData?.discount?.length; i++) {
-          let matchedDiscount = Data?.find((item: any) => item.discountId == this.itemData.discount[i]);
-          if (matchedDiscount != undefined) {
-            this.DiscountData.push(matchedDiscount);
-          }
-        }
-      } else {
-        this.alertService.showError(res['message']);
-      }
-    });
-  }
+  // ShowDiscount() {
+  //   this.ngxLoader.startLoader('loader-01');
+  //   let obj = {
+  //     outletId: sessionStorage.getItem('activeOutletId'),
+  //     isAllItem: false,
+  //   }
+  //   this.posDataService.getAllDiscountByOutletId(obj).subscribe((res: any) => {
+  //     this.ngxLoader.stopLoader('loader-01');
+  //     let Data = res['data'];
+  //     if (res['success']) {
+  //       for (let i = 0; i < this.itemData?.discount?.length; i++) {
+  //         let matchedDiscount = Data?.find((item: any) => item.discountId == this.itemData.discount[i]);
+  //         if (matchedDiscount != undefined) {
+  //           this.DiscountData.push(matchedDiscount);
+  //         }
+  //       }
+  //     } else {
+  //       this.alertService.showError(res['message']);
+  //     }
+  //   });
+  // }
 
-  ShowPromocode() {
-    this.ngxLoader.startLoader('loader-01');
-    let jsonData: any = {};
-    jsonData.outletId = sessionStorage.getItem('activeOutletId');
-    jsonData.isAllItem = false;
-    this.posDataService.getAllPromocodeByOutletId(jsonData).subscribe((res: any) => {
-      this.ngxLoader.stopLoader('loader-01');
-      let Data = res['data'];
-      if (res['success']) {
-        for (let i = 0; i < this.itemData?.discount?.length; i++) {
-          let matchedDiscount = Data?.find((item: any) => item.promocodeId == this.itemData.discount[i]);
-          if (matchedDiscount != undefined) {
-            this.PromocodeData.push(matchedDiscount);
-          }
-        }
-      } else {
-        this.alertService.showError(res['message']);
-      }
-    });
-  }
+  // ShowPromocode() {
+  //   this.ngxLoader.startLoader('loader-01');
+  //   let jsonData: any = {};
+  //   jsonData.outletId = sessionStorage.getItem('activeOutletId');
+  //   jsonData.isAllItem = false;
+  //   this.posDataService.getAllPromocodeByOutletId(jsonData).subscribe((res: any) => {
+  //     this.ngxLoader.stopLoader('loader-01');
+  //     let Data = res['data'];
+  //     if (res['success']) {
+  //       for (let i = 0; i < this.itemData?.discount?.length; i++) {
+  //         let matchedDiscount = Data?.find((item: any) => item.promocodeId == this.itemData.discount[i]);
+  //         if (matchedDiscount != undefined) {
+  //           this.PromocodeData.push(matchedDiscount);
+  //         }
+  //       }
+  //     } else {
+  //       this.alertService.showError(res['message']);
+  //     }
+  //   });
+  // }
 
 
   ShowModifier() {

@@ -30,6 +30,13 @@ import { ReconcileStockComponent } from './pages/Inventory/reconcile-stock/recon
 import { POSAuthGuard } from '@module/auth-guard/posauth.guard';
 import { GeneralSettingsComponent } from './pages/general-settings/general-settings.component';
 import { PettyCashComponent } from './pages/pettycash/pettycash.component';
+import { WalkInOrderComponent } from './pages/walk-in-order/walk-in-order.component';
+import { AdminCategoryComponent } from './pages/admin-category/admin-category.component';
+import { AdminRestaurantComponent } from './pages/admin-restaurant/admin-restaurant.component';
+import { RestaurantPermissionComponent } from './pages/admin-restaurant/restaurant-permission/restaurant-permission.component';
+import { PrintDesignTableComponent } from './pages/print-design-veiw/print-design-table/print-design-table.component';
+import { PrintVeiwComponent } from './pages/print-design-veiw/print-veiw/print-veiw.component';
+import { PrintDesignViewViewComponent } from './pages/print-design-veiw/print-design-view-view/print-design-view-view.component';
 
 
 const routes: Routes = [
@@ -100,20 +107,45 @@ const routes: Routes = [
   },
   
   {
+    path: 'admin-restaurant',
+    component: AdminRestaurantComponent
+  },
+  {
+    path: 'admin-restaurant/restaurant-permission',
+    component: RestaurantPermissionComponent
+  },
+  {
     path: 'settings',
     component: SettingsComponent
+  },
+
+  {
+    path: 'print',
+    component: PrintDesignTableComponent
   },
   {
     path: 'user-view',
     component: UserViewComponent
   },
  
- 
-  
+   {
+    path: 'print-preveiw',
+    component: PrintVeiwComponent
+  },
+  {
+    path: 'print-design',
+    component: PrintDesignViewViewComponent
+  },
 
-           
+        {
+    path: 'walk-in/order',
+    component: WalkInOrderComponent
+  },   
   
-
+ {
+    path: 'admin-category',
+    component: AdminCategoryComponent
+  },
   {
     path: 'masters-discount',
     component: DiscountComponent

@@ -59,6 +59,20 @@ import { MatNativeDateModule } from "@angular/material/core";
 import { PettyCashComponent } from './pages/pettycash/pettycash.component';
 import { CategoryComponent } from './pages/menu/category/category.component';
 import { ItemViewComponent } from './pages/menu/item-view/item-view.component';
+import { WalkInOrderComponent } from './pages/walk-in-order/walk-in-order.component';
+import { AdminCategoryComponent } from './pages/admin-category/admin-category.component';
+import { AddAdminCategoryComponent } from './pages/admin-category/add-admin-category/add-admin-category.component';
+import { AdminRestaurantComponent } from './pages/admin-restaurant/admin-restaurant.component';
+import { RestaurantViewComponent } from './pages/admin-restaurant/restaurant-view/restaurant-view.component';
+import { RestaurantPermissionComponent } from './pages/admin-restaurant/restaurant-permission/restaurant-permission.component';
+import { RestaurantOutletFormComponent } from './pages/admin-restaurant/restaurant-outlet-form/restaurant-outlet-form.component';
+import { RestaurantOutletEditFormComponent } from './pages/admin-restaurant/restaurant-outlet-edit-form/restaurant-outlet-edit-form.component';
+import { RestaurantFormComponent } from './pages/admin-restaurant/restaurant-form/restaurant-form.component';
+import { PrintDesignTableComponent } from './pages/print-design-veiw/print-design-table/print-design-table.component';
+import { PrintDesignVeiwComponent } from './pages/print-design-veiw/print-design-veiw.component';
+import { PrintVeiwComponent } from './pages/print-design-veiw/print-veiw/print-veiw.component';
+import { PrintDesignViewViewComponent } from './pages/print-design-veiw/print-design-view-view/print-design-view-view.component';
+import { PrintDesignVeiwEditComponent } from './pages/print-design-veiw/print-design-veiw-edit/print-design-veiw-edit.component';
 
 @NgModule({
   declarations: [
@@ -77,6 +91,7 @@ import { ItemViewComponent } from './pages/menu/item-view/item-view.component';
     UserRegistrationComponent,
     UserRegFormComponent,
     UserRegViewComponent,
+      WalkInOrderComponent,
     AdminRoleComponent,
     AddAdminRoleComponent,
     OutletSelectionComponent,
@@ -86,10 +101,12 @@ import { ItemViewComponent } from './pages/menu/item-view/item-view.component';
     RestaurantSelectionComponent,
     DashboardComponent,
     SalesReceiptComponent,
+    
     SettingsComponent,
     UserViewComponent,
     SalesByCategoryComponent,
     SalesByItemComponent,
+    AdminCategoryComponent,
     SalesByComponent,
     InventoryComponent,
     SupplierComponent,
@@ -107,6 +124,20 @@ import { ItemViewComponent } from './pages/menu/item-view/item-view.component';
     ReconcileStockComponent,
     GeneralSettingsComponent,
     PettyCashComponent,
+    AddAdminCategoryComponent,
+    AdminRestaurantComponent,
+    RestaurantViewComponent,
+    RestaurantPermissionComponent,
+    RestaurantOutletFormComponent,
+    RestaurantOutletEditFormComponent,
+    RestaurantFormComponent,
+    PrintDesignTableComponent,
+    PrintDesignVeiwComponent,
+    PrintVeiwComponent,
+    PrintDesignViewViewComponent,
+    PrintDesignVeiwEditComponent
+       
+       
   ],
 
   imports: [

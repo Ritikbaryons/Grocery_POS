@@ -3,9 +3,22 @@
     <div class="settings_nav_section">
       <ul class="p-0 m-0">
         
+        <li class="position-relative" *ngIf="commonService.checkRolePermissions('LIST_CATEGORY')">
+          <a href="" class="font_14 fw-reg text-black" [routerLinkActive]="['active']"
+            routerLink="/POS_Grocery/admin-category">Category</a>
+        </li>
+          <li class="position-relative" *ngIf="commonService.checkRolePermissions('LIST_PRINT_DESIGNS')">
+          <a href="" class="font_14 fw-reg text-black" [routerLinkActive]="['active']"
+            routerLink="/POS_Grocery/print">Print Design</a>
+        </li>
         <li class="position-relative" *ngIf="commonService.checkRolePermissions('LIST_TAX')">
           <a href="" class="font_14 fw-reg text-black"  [routerLinkActive]="['active']"
             routerLink="/POS_Grocery/masters-tax">Tax</a>
+        </li>
+
+        <li class="position-relative" *ngIf="commonService.checkRolePermissions('LIST_RESTAURANT')">
+          <a href="" class="font_14 fw-reg text-black" [routerLinkActive]="['active']"
+            routerLink="/POS_Grocery/admin-restaurant">Store Management</a>
         </li>
        
         <li class="position-relative" *ngIf="commonService.checkRolePermissions('LIST_ROLES_AND_PERMISSIONS')">

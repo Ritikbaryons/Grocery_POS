@@ -112,7 +112,7 @@ export class PosDataService {
     return this.httpClient.get(`${environment.apiUrl}/TableMaster/GetPaymentRootOrderById/${id}`);
   }
   getAllRestaurants(IsAll: boolean): Observable<any> {
-    return this.httpClient.get(`${environment.apiUrl}/Restaurant/GetAllRestaurant/${IsAll}`);
+    return this.httpClient.get(`${environment.apiUrl}/Store/GetAllStore/${IsAll}`);
   }
   getUserRegDataById(id): Observable<any> {
     return this.httpClient.get(`${environment.apiUrl}/UserRegistration/GetUserRestaurantsById/${id}`);
@@ -169,7 +169,7 @@ export class PosDataService {
     return this.httpClient.get(`${environment.apiUrl}/FormAccess/GetFormAccessById/${id}`);
   }
   getRestaurantById(id: any): Observable<any> {
-    return this.httpClient.get(`${environment.apiUrl}/Restaurant/GetRestaurantById/${id}`);
+    return this.httpClient.get(`${environment.apiUrl}/Store/GetStoreById/${id}`);
   }
   getCompleteOrderCountByOutletId(data: any): Observable<any> {
     return this.httpClient.post(`${environment.apiUrl}/Orders/GetOrdersByCount`, data);
@@ -267,7 +267,7 @@ export class PosDataService {
     return this.httpClient.post(`${environment.apiUrl}/Restaurant/Post`, data);
   }
   updateRestaurantData(id: any, data: any): Observable<any> {
-    return this.httpClient.put(`${environment.apiUrl}/Restaurant/Put/${id}`, data);
+    return this.httpClient.put(`${environment.apiUrl}/store/Put/${id}`, data);
   }
   updateRestaurant(id: any, data: any): Observable<any> {
     return this.httpClient.put(`${environment.apiUrl}/Restaurant/PostRestoWithImage/${id}`, data);
